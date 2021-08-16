@@ -2,9 +2,11 @@ import { useRouter } from "next/dist/client/router";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import {format} from "date-fns"
-function search() {
+import InfoCards from "../components/InfoCards";
+function search({searchresult}) {
+    console.log(searchresult)
     const router=useRouter()
-    console.log(router.query)
+    
     const {location , startDate ,endDate,noOfGuest }=router.query;
 
     const formattedStartDate= format(new Date(startDate),"dd MMMM yy") 
@@ -12,7 +14,7 @@ function search() {
     const ranges=`${formattedStartDate}-${formattedEndDate}`
     return (
         <div className ="">
-            <Header/>
+            <Header placeholder={`${location} | ${ranges} |  ${noOfGuest} Guests`} />
             <main className="flex">
                 <section className='flex-grow pt-14 px-16'>
                     <h3 className='text-xs'>300 stays from {ranges} for {noOfGuest} guests </h3>
@@ -25,6 +27,22 @@ function search() {
                         <p className='button'>More filters </p>
 
                     </div>
+                    <div className="flex flex-col " >
+                    {searchresult.map(({img ,location ,title ,description ,star ,price,total} )=>(
+                     <InfoCards  
+                     key={img}
+                     img={img}
+                     location={location}
+                     title={title}
+                     description={description}
+                     star={star}
+                     price={price}
+                     total={total} />
+
+                    ))}
+                    </div>
+                    
+                    
                 </section>
 
             </main>
@@ -35,3 +53,12 @@ function search() {
 }
 
 export default search
+export  async function getServerSideProps(){
+    const searchresult= await fetch("https://links.papareact.com/isz ").then(res=>res.json())
+    return{
+         props:{
+              searchresult:searchresult
+         }
+    }
+
+}

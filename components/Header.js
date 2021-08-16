@@ -11,9 +11,10 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
 import router, { useRouter } from 'next/router';
-import { roundToNearestMinutes } from 'date-fns';
+import { getDate } from 'date-fns';
 
-function Header() {
+function Header({placeholder}) {
+   
     const[searchInput,setSearchInput]=useState('');
     const [startDate, setStartDate] = useState(new Date()); 
     const [endDate, setEndDate] = useState(new Date());
@@ -69,7 +70,7 @@ function Header() {
                 className=" flex-grow pl-5 
                 bg-transparent outline-none 
                 md:shadow-sm text-gray-600 placeholder-gray" 
-                type="text" placeholder="start your search"/>
+                type="text" placeholder={ placeholder|| "start your search"}/>
                 <SearchIcon className="hidden md:inline-flex 
                 h-8 bg-red-400
                  text-white rounded-full 
