@@ -3,6 +3,8 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import {format} from "date-fns"
 import InfoCards from "../components/InfoCards";
+import Map from "../components/Map";
+
 function search({searchresult}) {
     console.log(searchresult)
     const router=useRouter()
@@ -43,6 +45,9 @@ function search({searchresult}) {
                     </div>
                     
                     
+                </section>
+                <section className =" hidden xl:inline-flex xl:min-w-[600px]">
+                    <Map searchresult={searchresult}/>
                 </section>
 
             </main>
