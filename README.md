@@ -6,7 +6,8 @@ It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-
 
 ## Preview
 
-Preview the example live of Airbnb clone deployed🚀 on vecel https://airbnb-clone-dynamic.vercel.app/
+Preview the example live of Airbnb clone deployed🚀 on vecel 
+## https://airbnb-clone-dynamic.vercel.app/
 
 ## Deploy your own
 
